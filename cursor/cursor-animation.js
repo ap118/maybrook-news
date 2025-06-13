@@ -95,6 +95,9 @@ class AnimatedCursor {
     
     loadSpriteSheet() {
         const spriteSheet = new Image();
+        let loadAttempts = 0;
+        const maxLoadAttempts = 3;
+        
         spriteSheet.onload = () => {
             this.cursor.style.backgroundImage = `url('${spriteSheet.src}')`;
             this.cursor.style.display = 'block';
@@ -105,10 +108,24 @@ class AnimatedCursor {
             // Performance monitoring
             this.logPerformance('Sprite sheet loaded successfully');
         };
+        
         spriteSheet.onerror = () => {
-            console.warn('Failed to load cursor sprite sheet, falling back to default cursor');
-            this.destroy();
+            loadAttempts++;
+            console.warn(`Failed to load cursor sprite sheet (attempt ${loadAttempts}/${maxLoadAttempts})`);
+            
+            if (loadAttempts < maxLoadAttempts) {
+                // Retry loading with a slight delay
+                setTimeout(() => {
+                    spriteSheet.src = this.spriteSheetPath;
+                }, 500 * loadAttempts); // Progressive delay
+            } else {
+                console.error('Failed to load cursor sprite sheet after all attempts, falling back to default cursor');
+                this.destroy();
+            }
         };
+        
+        // Set crossOrigin to anonymous to avoid CORS issues
+        spriteSheet.crossOrigin = 'anonymous';
         spriteSheet.src = this.spriteSheetPath;
     }
     
@@ -338,6 +355,27 @@ class AnimatedCursor {
         });
         this.eventListeners.clear();
     }
+    
+    isHealthy() {
+        return this.cursor && 
+               this.isVisible && 
+               this.cursor.style.backgroundImage && 
+               this.cursor.style.backgroundImage !== 'none' &&
+               this.animationInterval !== null;
+    }
+    
+    checkHealth() {
+        const health = this.isHealthy();
+        if (!health) {
+            console.warn('Cursor health check failed:', {
+                cursorExists: !!this.cursor,
+                isVisible: this.isVisible,
+                hasBackgroundImage: !!(this.cursor && this.cursor.style.backgroundImage),
+                animationRunning: this.animationInterval !== null
+            });
+        }
+        return health;
+    }
 }
 
 // Touch device detection
@@ -347,27 +385,133 @@ const isTouchDevice = (
     window.matchMedia('(pointer: coarse)').matches
 );
 
-// Initialize the animated cursor when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Check if user prefers reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Robust cursor initialization with multiple retry strategies
+class CursorInitializer {
+    constructor() {
+        this.maxRetries = 5;
+        this.retryCount = 0;
+        this.retryDelays = [0, 500, 1000, 2000, 3000]; // Progressive delays
+        this.cursorInstance = null;
+        this.initializationAttempted = false;
+    }
     
-    // Only initialize if not a touch device
-    if (!prefersReducedMotion && !isTouchDevice) {
-        new AnimatedCursor();
+    shouldInitialize() {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        return !prefersReducedMotion && !isTouchDevice;
+    }
+    
+    attemptInitialization() {
+        if (this.initializationAttempted || !this.shouldInitialize()) {
+            return;
+        }
+        
+        try {
+            // Check if cursor already exists
+            const existingCursor = document.getElementById('animated-cursor');
+            if (existingCursor) {
+                console.log('Cursor already exists, skipping initialization');
+                return;
+            }
+            
+            // Check if body is available
+            if (!document.body) {
+                console.log('Body not available, will retry');
+                this.scheduleRetry();
+                return;
+            }
+            
+            // Attempt to create cursor instance
+            this.cursorInstance = new AnimatedCursor();
+            this.initializationAttempted = true;
+            
+            // Verify initialization was successful
+            setTimeout(() => {
+                if (this.cursorInstance && this.cursorInstance.checkHealth()) {
+                    console.log('Cursor initialized successfully');
+                    
+                    // Set up periodic health monitoring
+                    this.startHealthMonitoring();
+                } else {
+                    console.warn('Cursor initialization may have failed, attempting retry');
+                    this.handleInitializationFailure();
+                }
+            }, 1000);
+            
+        } catch (error) {
+            console.error('Error during cursor initialization:', error);
+            this.handleInitializationFailure();
+        }
+    }
+    
+    handleInitializationFailure() {
+        // Stop health monitoring
+        this.stopHealthMonitoring();
+        
+        if (this.cursorInstance) {
+            try {
+                this.cursorInstance.destroy();
+            } catch (e) {
+                console.warn('Error destroying failed cursor instance:', e);
+            }
+            this.cursorInstance = null;
+        }
+        
+        this.retryCount++;
+        if (this.retryCount < this.maxRetries) {
+            this.scheduleRetry();
+        } else {
+            console.warn('Max retries reached, falling back to default cursor');
+        }
+    }
+    
+    scheduleRetry() {
+        const delay = this.retryDelays[Math.min(this.retryCount, this.retryDelays.length - 1)];
+        setTimeout(() => {
+            this.attemptInitialization();
+        }, delay);
+    }
+    
+    startHealthMonitoring() {
+        // Check cursor health every 30 seconds
+        this.healthInterval = setInterval(() => {
+            if (this.cursorInstance && !this.cursorInstance.checkHealth()) {
+                console.warn('Cursor health check failed, attempting recovery');
+                this.handleInitializationFailure();
+            }
+        }, 30000);
+    }
+    
+    stopHealthMonitoring() {
+        if (this.healthInterval) {
+            clearInterval(this.healthInterval);
+            this.healthInterval = null;
+        }
+    }
+}
+
+// Global initializer instance
+const cursorInitializer = new CursorInitializer();
+
+// Multiple initialization triggers for maximum compatibility
+const initializeCursor = () => {
+    cursorInitializer.attemptInitialization();
+};
+
+// Try on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', initializeCursor);
+
+// Try on window load
+window.addEventListener('load', initializeCursor);
+
+// Try on readystatechange for older browsers
+document.addEventListener('readystatechange', () => {
+    if (document.readyState === 'complete') {
+        initializeCursor();
     }
 });
 
-// Also try initializing on window load as a fallback
-window.addEventListener('load', () => {
-    // If cursor element doesn't exist after 2 seconds, try to initialize again
-    setTimeout(() => {
-        const cursorElement = document.getElementById('animated-cursor');
-        if (!cursorElement) {
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (!prefersReducedMotion && !isTouchDevice) {
-                new AnimatedCursor();
-            }
-        }
-    }, 2000);
-}); 
+// Final fallback: try after a reasonable delay
+setTimeout(initializeCursor, 1000);
+
+// Additional fallback for very slow loading pages
+setTimeout(initializeCursor, 5000); 
