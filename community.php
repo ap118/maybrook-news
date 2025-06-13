@@ -26,7 +26,9 @@
 <meta name="twitter:url" content="https://www.maybrookmissing.com/" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet" />
-    
+
+<link href="cursor/cursor-style.css" rel="stylesheet" />
+
 <!-- OneTrust Cookies Consent Notice start for maybrookmissing.com -->
 <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="01960fc7-987b-7377-b589-67e20b5696af" ></script>
 <!-- OneTrust Cookies Consent Notice end for maybrookmissing.com -->
@@ -125,5 +127,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <script src="js/jquery-3.6.0.min.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/main.js"></script>
+<script src="cursor/cursor-animation.js"></script>
 </body>
 </html>

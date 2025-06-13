@@ -3,6 +3,7 @@
 <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <link href="../cursor/cursor-style.css" rel="stylesheet">
         <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -110,4 +111,5 @@
 
 
  </script>
+<script src="../cursor/cursor-animation.js"></script>
 </body>

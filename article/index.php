@@ -26,7 +26,9 @@
 <meta name="twitter:url" content="https://www.maybrookmissing.com/" />
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet" />
-    
+
+<link href="../cursor/cursor-style.css" rel="stylesheet" />
+
 <!-- OneTrust Cookies Consent Notice start for maybrookmissing.com -->
 <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="01960fc7-987b-7377-b589-67e20b5696af" ></script>
 <!-- OneTrust Cookies Consent Notice end for maybrookmissing.com -->
@@ -86,11 +88,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       <div class="col-lg-6 col-xs-12">
         <section class="artical">
           <div class="main-artical"> 
-            <p>A rental property in Detroit’s Brightmoor neighborhood has become the focus of a chilling investigation after a local woman escaped the home under shocking circumstances and an actor was found dead nearby.</p>
-            <p>Police were alerted after <strong>Tess Marshall</strong>, 28, was discovered injured and disoriented outside the Barberry Street property. What began as a simple wellness check quickly turned into a large-scale crime scene. Investigators uncovered a network of hidden tunnels beneath the home, sparking questions about the property’s history and potential connection to unsolved disappearances dating back decades.</p>
+            <p>A rental property in Detroit's Brightmoor neighborhood has become the focus of a chilling investigation after a local woman escaped the home under shocking circumstances and an actor was found dead nearby.</p>
+            <p>Police were alerted after <strong>Tess Marshall</strong>, 28, was discovered injured and disoriented outside the Barberry Street property. What began as a simple wellness check quickly turned into a large-scale crime scene. Investigators uncovered a network of hidden tunnels beneath the home, sparking questions about the property's history and potential connection to unsolved disappearances dating back decades.</p>
             <p>Sources close to the investigation say the tunnels were likely constructed in the 1980s by a previous homeowner, now deceased. Disturbing items found in the subterranean chambers suggest prolonged and possibly criminal activity, though police have not confirmed details pending ongoing forensic analysis.</p>
               <p>The property had recently been listed as a short-term rental. Marshall, in town for a job interview, had reportedly been staying at the house when events took a violent turn. </p>
-              <p>City officials are now urging caution and have announced emergency inspections of similar abandoned or neglected properties throughout the Brightmoor neighborhood. Mayor Sheryl Parks issued a statement calling the case “deeply troubling” and promised a full investigation into how such activity could go unnoticed for so long.</p>
+              <p>City officials are now urging caution and have announced emergency inspections of similar abandoned or neglected properties throughout the Brightmoor neighborhood. Mayor Sheryl Parks issued a statement calling the case "deeply troubling" and promised a full investigation into how such activity could go unnoticed for so long.</p>
           </div>
         </section>
       </div>
@@ -118,5 +120,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <script src="../js/jquery-3.6.0.min.js"></script> 
 <script src="../js/bootstrap.min.js"></script> 
 <script src="../js/main.js"></script>
+<script src="../cursor/cursor-animation.js"></script>
 </body>
 </html>
