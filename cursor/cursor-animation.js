@@ -17,7 +17,19 @@ class AnimatedCursor {
         this.frameHeight = 64;
         this.displayWidth = 32;
         this.displayHeight = 32;
-        this.spriteSheetPath = 'cursor/running_child_6frames_sprite.png';
+        
+        // Robustly resolve sprite path based on JS file location (works locally, in subdirectories, and in older browsers)
+        let scriptBase = '';
+        if (document.currentScript) {
+            scriptBase = document.currentScript.src.split('/').slice(0, -1).join('/');
+        } else {
+            // Fallback for older browsers: use the last script tag
+            const scripts = document.getElementsByTagName('script');
+            if (scripts.length) {
+                scriptBase = scripts[scripts.length - 1].src.split('/').slice(0, -1).join('/');
+            }
+        }
+        this.spriteSheetPath = scriptBase + '/running_child_6frames_sprite.png';
         
         // Debug iframe detection
         console.log('Iframe detection:', {
