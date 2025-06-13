@@ -19,14 +19,22 @@ class AnimatedCursor {
         this.displayHeight = 32;
         this.spriteSheetPath = 'cursor/running_child_6frames_sprite.png';
         
+        // Debug iframe detection
+        console.log('Iframe detection:', {
+            window: window,
+            windowTop: window.top,
+            isIframeContext: this.isIframeContext,
+            location: window.location.href
+        });
+        
         this.init();
     }
     
     init() {
-        // If we're in an iframe, don't initialize the cursor to prevent conflicts
-        if (this.isIframeContext) {
-            return;
-        }
+        // Remove iframe context check to allow animated cursor in iframes
+        // if (this.isIframeContext) {
+        //     return;
+        // }
         
         // Create cursor element
         this.createCursorElement();
@@ -94,6 +102,32 @@ class AnimatedCursor {
         
         // Show cursor when entering window
         document.addEventListener('mouseenter', () => {
+            if (this.cursor && this.isVisible) {
+                this.cursor.style.display = 'block';
+            }
+        });
+
+        // Hide cursor if iframe loses focus (prevents stuck cursor)
+        window.addEventListener('blur', () => {
+            if (this.cursor) {
+                this.cursor.style.display = 'none';
+            }
+        });
+        // Hide cursor if mouse leaves the iframe context
+        window.addEventListener('mouseout', (e) => {
+            // Only hide if leaving the top-level window (not just a child element)
+            if (!e.relatedTarget && this.cursor) {
+                this.cursor.style.display = 'none';
+            }
+        });
+        // Show cursor if iframe regains focus (for FF/Safari)
+        window.addEventListener('focus', () => {
+            if (this.cursor && this.isVisible) {
+                this.cursor.style.display = 'block';
+            }
+        });
+        // Show cursor if mouse enters the iframe document (robust for all browsers)
+        document.body.addEventListener('mouseenter', () => {
             if (this.cursor && this.isVisible) {
                 this.cursor.style.display = 'block';
             }
@@ -214,10 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
-    // Don't initialize in iframe contexts to prevent conflicts
-    const isIframeContext = window !== window.top;
-    
-    if (!prefersReducedMotion && !isIframeContext) {
+    // Always initialize, even in iframes
+    if (!prefersReducedMotion) {
         new AnimatedCursor();
     }
 });
@@ -229,9 +261,7 @@ window.addEventListener('load', () => {
         const cursorElement = document.getElementById('animated-cursor');
         if (!cursorElement) {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const isIframeContext = window !== window.top;
-            
-            if (!prefersReducedMotion && !isIframeContext) {
+            if (!prefersReducedMotion) {
                 new AnimatedCursor();
             }
         }
