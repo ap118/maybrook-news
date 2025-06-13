@@ -243,13 +243,20 @@ class AnimatedCursor {
     }
 }
 
+// Touch device detection
+const isTouchDevice = (
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0 ||
+    window.matchMedia('(pointer: coarse)').matches
+);
+
 // Initialize the animated cursor when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
-    // Always initialize, even in iframes
-    if (!prefersReducedMotion) {
+    // Only initialize if not a touch device
+    if (!prefersReducedMotion && !isTouchDevice) {
         new AnimatedCursor();
     }
 });
@@ -261,7 +268,7 @@ window.addEventListener('load', () => {
         const cursorElement = document.getElementById('animated-cursor');
         if (!cursorElement) {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (!prefersReducedMotion) {
+            if (!prefersReducedMotion && !isTouchDevice) {
                 new AnimatedCursor();
             }
         }
