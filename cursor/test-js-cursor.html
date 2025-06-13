@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Cursor Test</title>
+    <style>
+        body {
+            background: white;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            margin: 0;
+        }
+        .test-area {
+            width: 300px;
+            height: 200px;
+            border: 2px solid black;
+            background: #f0f0f0;
+            margin: 20px;
+            padding: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border: 1px solid #bee5eb;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .sprite-preview {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f9f9f9;
+        }
+    </style>
+    <link href="cursor-style.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>JavaScript Animated Cursor Test</h1>
+    
+    <div class="info-box">
+        <h3>Test Instructions:</h3>
+        <ol>
+            <li>Move your mouse around the page</li>
+            <li>You should see an animated running child cursor</li>
+            <li>If you see a static cursor or no cursor change, check the browser console</li>
+        </ol>
+    </div>
+    
+    <div class="test-area">
+        <h3>Test Area</h3>
+        <p>Move your mouse over this area to test the animated cursor.</p>
+        <p>You should see a running child animation following your mouse.</p>
+    </div>
+    
+    <div class="info-box">
+        <h3>Expected Behavior:</h3>
+        <ul>
+            <li><strong>JavaScript Active:</strong> Animated cursor follows mouse, default cursor hidden</li>
+            <li><strong>CSS Fallback:</strong> Static GIF cursor (if JavaScript fails)</li>
+            <li><strong>No Cursor:</strong> Check file paths and browser console</li>
+        </ul>
+    </div>
+    
+    <div class="sprite-preview">
+        <h3>Sprite Sheet Preview:</h3>
+        <p><strong>Large Screen (768px+):</strong> <img src="running_child_6frames_sprite.png" alt="128px sprite sheet" style="max-width: 200px; height: auto;"></p>
+        <p><strong>Small Screen (&lt;768px):</strong> <img src="running_child_6frames_32px_sprite.png" alt="32px sprite sheet" style="max-width: 200px; height: auto;"></p>
+    </div>
+    
+    <script src="cursor-animation.js"></script>
+</body>
+</html> 

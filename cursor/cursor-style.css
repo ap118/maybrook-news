@@ -1,0 +1,111 @@
+/* Custom Animated Cursor Styles */
+
+/* Hide default cursor when JavaScript cursor is active */
+body.js-cursor-active {
+  cursor: none !important;
+}
+
+/* Hide default cursor on all elements when JavaScript cursor is active */
+body.js-cursor-active * {
+  cursor: none !important;
+}
+
+/* Override specific elements that might have !important cursor declarations */
+body.js-cursor-active #btnCredits,
+body.js-cursor-active #btnCreditsIntro,
+body.js-cursor-active .fixed_form_expand,
+body.js-cursor-active .expand_icon,
+body.js-cursor-active .submit-btn {
+  cursor: none !important;
+}
+
+/* Fallback CSS cursor for when JavaScript is disabled or fails */
+body:not(.js-cursor-active) html,
+body:not(.js-cursor-active) body,
+body:not(.js-cursor-active) div,
+body:not(.js-cursor-active) p,
+body:not(.js-cursor-active) span,
+body:not(.js-cursor-active) a,
+body:not(.js-cursor-active) img,
+body:not(.js-cursor-active) h1,
+body:not(.js-cursor-active) h2,
+body:not(.js-cursor-active) h3,
+body:not(.js-cursor-active) h4,
+body:not(.js-cursor-active) h5,
+body:not(.js-cursor-active) h6,
+body:not(.js-cursor-active) ul,
+body:not(.js-cursor-active) li,
+body:not(.js-cursor-active) nav,
+body:not(.js-cursor-active) header,
+body:not(.js-cursor-active) footer,
+body:not(.js-cursor-active) section,
+body:not(.js-cursor-active) article,
+body:not(.js-cursor-active) aside,
+body:not(.js-cursor-active) main {
+  cursor: url('runningchild_32.gif') 16 16, auto !important;
+}
+
+/* Alternative: try the 64px version if 32px doesn't work */
+@media (min-width: 768px) {
+  body:not(.js-cursor-active) html,
+  body:not(.js-cursor-active) body,
+  body:not(.js-cursor-active) div,
+  body:not(.js-cursor-active) p,
+  body:not(.js-cursor-active) span,
+  body:not(.js-cursor-active) a,
+  body:not(.js-cursor-active) img,
+  body:not(.js-cursor-active) h1,
+  body:not(.js-cursor-active) h2,
+  body:not(.js-cursor-active) h3,
+  body:not(.js-cursor-active) h4,
+  body:not(.js-cursor-active) h5,
+  body:not(.js-cursor-active) h6,
+  body:not(.js-cursor-active) ul,
+  body:not(.js-cursor-active) li,
+  body:not(.js-cursor-active) nav,
+  body:not(.js-cursor-active) header,
+  body:not(.js-cursor-active) footer,
+  body:not(.js-cursor-active) section,
+  body:not(.js-cursor-active) article,
+  body:not(.js-cursor-active) aside,
+  body:not(.js-cursor-active) main {
+    cursor: url('runningchild_64.gif') 32 32, auto !important;
+  }
+}
+
+/* Ensure cursor works on interactive elements */
+body:not(.js-cursor-active) a:hover,
+body:not(.js-cursor-active) button:hover,
+body:not(.js-cursor-active) input:hover,
+body:not(.js-cursor-active) textarea:hover,
+body:not(.js-cursor-active) select:hover {
+  cursor: url('runningchild_32.gif') 16 16, pointer !important;
+}
+
+/* Media query for larger screens with 64px cursor */
+@media (min-width: 768px) {
+  body:not(.js-cursor-active) a:hover,
+  body:not(.js-cursor-active) button:hover,
+  body:not(.js-cursor-active) input:hover,
+  body:not(.js-cursor-active) textarea:hover,
+  body:not(.js-cursor-active) select:hover {
+    cursor: url('runningchild_64.gif') 32 32, pointer !important;
+  }
+}
+
+/* JavaScript cursor styles */
+#animated-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: left, top, background-position;
+}
+
+/* Optimize performance for the animated cursor */
+#animated-cursor {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+} 

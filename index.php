@@ -27,6 +27,8 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet" />
 
+<link href="cursor/cursor-style.css" rel="stylesheet" />
+
 <!-- OneTrust Cookies Consent Notice start for maybrookmissing.com --> 
 <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="01960fc7-987b-7377-b589-67e20b5696af" ></script> 
 <!-- OneTrust Cookies Consent Notice end for maybrookmissing.com -->
@@ -100,13 +102,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 
 </p>
            
-            <p>At 2:17am, Wednesday morning, a group of 3rd graders from our school in Ms. Gandy’s class, who had recently transferred after an incident at her previous school, voluntarily left their homes. Authorities are baffled by the inexplicable disappearances, which has shaken the community to its core.  
+            <p>At 2:17am, Wednesday morning, a group of 3rd graders from our school in Ms. Gandy's class, who had recently transferred after an incident at her previous school, voluntarily left their homes. Authorities are baffled by the inexplicable disappearances, which has shaken the community to its core.  
  
 </p>
             <p>In the aftermath of the disappearance, we held a school assembly where numerous parents were able to express their increasing concern about both the investigation and the whereabouts of their children.
  
 </p>
-			  <p>One parent exclaimed, “I don’t understand at all—why her classroom? Why only hers?” as our school principal attempted to reassure the crowd.
+			  <p>One parent exclaimed, "I don't understand at all—why her classroom? Why only hers?" as our school principal attempted to reassure the crowd.
 With no sign of force, and no further information coming to light, we are left with the lingering question… WHY?</p>
             <div class="clearfix"></div>
             <p class="text-center">********</p>
@@ -175,5 +177,6 @@ With no sign of force, and no further information coming to light, we are left w
 <script src="js/jquery-3.6.0.min.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/main.js"></script>
+<script src="cursor/cursor-animation.js"></script>
 </body>
 </html>
