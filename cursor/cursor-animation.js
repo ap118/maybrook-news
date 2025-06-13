@@ -12,6 +12,14 @@ class AnimatedCursor {
         this.isInIframe = false; // Track iframe state
         this.isIframeContext = window !== window.top; // Check if we're in an iframe
         
+        // Performance optimization: throttle mouse movement
+        this.lastMouseUpdate = 0;
+        this.mouseThrottleMs = 16; // ~60fps (1000ms / 60fps)
+        
+        // Store event listeners for proper cleanup
+        this.eventListeners = new Map();
+        this.mutationObserver = null;
+        
         // Use 64px sprite for quality, display at 32px size
         this.frameWidth = 64;
         this.frameHeight = 64;
@@ -31,13 +39,13 @@ class AnimatedCursor {
         }
         this.spriteSheetPath = scriptBase + '/running_child_6frames_sprite.png';
         
-        // Debug iframe detection
-        console.log('Iframe detection:', {
-            window: window,
-            windowTop: window.top,
-            isIframeContext: this.isIframeContext,
-            location: window.location.href
-        });
+        // Remove debug logging for production
+        // console.log('Iframe detection:', {
+        //     window: window,
+        //     windowTop: window.top,
+        //     isIframeContext: this.isIframeContext,
+        //     location: window.location.href
+        // });
         
         this.init();
     }
@@ -75,6 +83,11 @@ class AnimatedCursor {
             background-position: 0 0;
             transform: translate(-50%, -50%);
             display: none;
+            will-change: transform, background-position;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
         `;
         
         document.body.appendChild(this.cursor);
@@ -88,6 +101,9 @@ class AnimatedCursor {
             this.isVisible = true;
             // Add class to body to indicate JavaScript cursor is active
             document.body.classList.add('js-cursor-active');
+            
+            // Performance monitoring
+            this.logPerformance('Sprite sheet loaded successfully');
         };
         spriteSheet.onerror = () => {
             console.warn('Failed to load cursor sprite sheet, falling back to default cursor');
@@ -96,95 +112,147 @@ class AnimatedCursor {
         spriteSheet.src = this.spriteSheetPath;
     }
     
+    logPerformance(message) {
+        if (window.performance && window.performance.memory) {
+            const memory = window.performance.memory;
+            console.log(`Cursor Performance - ${message}:`, {
+                usedJSHeapSize: Math.round(memory.usedJSHeapSize / 1024 / 1024) + 'MB',
+                totalJSHeapSize: Math.round(memory.totalJSHeapSize / 1024 / 1024) + 'MB',
+                jsHeapSizeLimit: Math.round(memory.jsHeapSizeLimit / 1024 / 1024) + 'MB'
+            });
+        }
+    }
+    
     addEventListeners() {
-        // Track mouse movement
-        document.addEventListener('mousemove', (e) => {
-            if (this.cursor && this.isVisible) {
-                this.cursor.style.left = e.clientX + 'px';
-                this.cursor.style.top = e.clientY + 'px';
+        // Create bound event handlers for proper cleanup
+        this.handleMouseMove = (e) => {
+            const now = performance.now();
+            if (now - this.lastMouseUpdate >= this.mouseThrottleMs) {
+                if (this.cursor && this.isVisible) {
+                    this.cursor.style.left = e.clientX + 'px';
+                    this.cursor.style.top = e.clientY + 'px';
+                }
+                this.lastMouseUpdate = now;
             }
-        });
+        };
         
-        // Hide cursor when leaving window
-        document.addEventListener('mouseleave', () => {
+        this.handleMouseLeave = () => {
             if (this.cursor) {
                 this.cursor.style.display = 'none';
             }
-        });
+        };
         
-        // Show cursor when entering window
-        document.addEventListener('mouseenter', () => {
+        this.handleMouseEnter = () => {
             if (this.cursor && this.isVisible) {
                 this.cursor.style.display = 'block';
             }
-        });
-
-        // Hide cursor if iframe loses focus (prevents stuck cursor)
-        window.addEventListener('blur', () => {
+        };
+        
+        this.handleWindowBlur = () => {
             if (this.cursor) {
                 this.cursor.style.display = 'none';
             }
-        });
-        // Hide cursor if mouse leaves the iframe context
-        window.addEventListener('mouseout', (e) => {
-            // Only hide if leaving the top-level window (not just a child element)
+        };
+        
+        this.handleWindowMouseOut = (e) => {
             if (!e.relatedTarget && this.cursor) {
                 this.cursor.style.display = 'none';
             }
-        });
+        };
+        
+        this.handleWindowFocus = () => {
+            if (this.cursor && this.isVisible) {
+                this.cursor.style.display = 'block';
+            }
+        };
+        
+        this.handleBodyMouseEnter = () => {
+            if (this.cursor && this.isVisible) {
+                this.cursor.style.display = 'block';
+            }
+        };
+        
+        // Track mouse movement with throttling for performance
+        document.addEventListener('mousemove', this.handleMouseMove);
+        this.eventListeners.set('mousemove', this.handleMouseMove);
+        
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', this.handleMouseLeave);
+        this.eventListeners.set('mouseleave', this.handleMouseLeave);
+        
+        // Show cursor when entering window
+        document.addEventListener('mouseenter', this.handleMouseEnter);
+        this.eventListeners.set('mouseenter', this.handleMouseEnter);
+
+        // Hide cursor if iframe loses focus (prevents stuck cursor)
+        window.addEventListener('blur', this.handleWindowBlur);
+        this.eventListeners.set('windowBlur', this.handleWindowBlur);
+        
+        // Hide cursor if mouse leaves the iframe context
+        window.addEventListener('mouseout', this.handleWindowMouseOut);
+        this.eventListeners.set('windowMouseOut', this.handleWindowMouseOut);
+        
         // Show cursor if iframe regains focus (for FF/Safari)
-        window.addEventListener('focus', () => {
-            if (this.cursor && this.isVisible) {
-                this.cursor.style.display = 'block';
-            }
-        });
+        window.addEventListener('focus', this.handleWindowFocus);
+        this.eventListeners.set('windowFocus', this.handleWindowFocus);
+        
         // Show cursor if mouse enters the iframe document (robust for all browsers)
-        document.body.addEventListener('mouseenter', () => {
-            if (this.cursor && this.isVisible) {
-                this.cursor.style.display = 'block';
-            }
-        });
+        document.body.addEventListener('mouseenter', this.handleBodyMouseEnter);
+        this.eventListeners.set('bodyMouseEnter', this.handleBodyMouseEnter);
         
         // Handle iframe interactions
         this.handleIframeInteractions();
         
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            // Ensure cursor stays within bounds
-            if (this.cursor && this.isVisible) {
-                const rect = this.cursor.getBoundingClientRect();
-                if (rect.right > window.innerWidth) {
-                    this.cursor.style.left = (window.innerWidth - this.displayWidth / 2) + 'px';
+        // Handle window resize with debouncing
+        let resizeTimeout;
+        this.handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Ensure cursor stays within bounds
+                if (this.cursor && this.isVisible) {
+                    const rect = this.cursor.getBoundingClientRect();
+                    if (rect.right > window.innerWidth) {
+                        this.cursor.style.left = (window.innerWidth - this.displayWidth / 2) + 'px';
+                    }
+                    if (rect.bottom > window.innerHeight) {
+                        this.cursor.style.top = (window.innerHeight - this.displayHeight / 2) + 'px';
+                    }
                 }
-                if (rect.bottom > window.innerHeight) {
-                    this.cursor.style.top = (window.innerHeight - this.displayHeight / 2) + 'px';
-                }
-            }
-        });
+            }, 100); // Debounce resize events
+        };
+        window.addEventListener('resize', this.handleResize);
+        this.eventListeners.set('resize', this.handleResize);
     }
     
     handleIframeInteractions() {
         // Find all iframes in the document
         const iframes = document.querySelectorAll('iframe');
         
-        iframes.forEach(iframe => {
-            // Hide parent cursor when mouse enters iframe
-            iframe.addEventListener('mouseenter', () => {
+        const addIframeListeners = (iframe) => {
+            const mouseEnterHandler = () => {
                 if (this.cursor) {
                     this.cursor.style.display = 'none';
                 }
-            });
+            };
             
-            // Show parent cursor when mouse leaves iframe
-            iframe.addEventListener('mouseleave', () => {
+            const mouseLeaveHandler = () => {
                 if (this.cursor && this.isVisible) {
                     this.cursor.style.display = 'block';
                 }
-            });
-        });
+            };
+            
+            iframe.addEventListener('mouseenter', mouseEnterHandler);
+            iframe.addEventListener('mouseleave', mouseLeaveHandler);
+            
+            // Store references for cleanup
+            if (!this.iframeListeners) this.iframeListeners = new Map();
+            this.iframeListeners.set(iframe, { mouseEnterHandler, mouseLeaveHandler });
+        };
+        
+        iframes.forEach(addIframeListeners);
         
         // Also handle dynamic iframe additions
-        const observer = new MutationObserver((mutations) => {
+        this.mutationObserver = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 mutation.addedNodes.forEach((node) => {
                     if (node.nodeType === 1) { // Element node
@@ -196,50 +264,61 @@ class AnimatedCursor {
                             newIframes.push(node);
                         }
                         
-                        newIframes.forEach(iframe => {
-                            iframe.addEventListener('mouseenter', () => {
-                                if (this.cursor) {
-                                    this.cursor.style.display = 'none';
-                                }
-                            });
-                            
-                            iframe.addEventListener('mouseleave', () => {
-                                if (this.cursor && this.isVisible) {
-                                    this.cursor.style.display = 'block';
-                                }
-                            });
-                        });
+                        newIframes.forEach(addIframeListeners);
                     }
                 });
             });
         });
         
-        observer.observe(document.body, {
+        this.mutationObserver.observe(document.body, {
             childList: true,
             subtree: true
         });
     }
     
     startAnimation() {
-        // Ensure animation starts regardless of iframe state
-        this.animationInterval = setInterval(() => {
-            if (this.cursor && this.isVisible) {
-                this.currentFrame = (this.currentFrame + 1) % this.totalFrames;
-                const xOffset = -(this.currentFrame * this.displayWidth);
-                this.cursor.style.backgroundPosition = `${xOffset}px 0`;
+        // Use requestAnimationFrame for smoother animation
+        let lastFrameTime = 0;
+        const animate = (currentTime) => {
+            if (currentTime - lastFrameTime >= this.animationSpeed) {
+                if (this.cursor && this.isVisible) {
+                    this.currentFrame = (this.currentFrame + 1) % this.totalFrames;
+                    const xOffset = -(this.currentFrame * this.displayWidth);
+                    this.cursor.style.backgroundPosition = `${xOffset}px 0`;
+                }
+                lastFrameTime = currentTime;
             }
-        }, this.animationSpeed);
+            this.animationInterval = requestAnimationFrame(animate);
+        };
+        this.animationInterval = requestAnimationFrame(animate);
     }
     
     stopAnimation() {
         if (this.animationInterval) {
-            clearInterval(this.animationInterval);
+            cancelAnimationFrame(this.animationInterval);
             this.animationInterval = null;
         }
     }
     
     destroy() {
         this.stopAnimation();
+        
+        // Clean up iframe listeners
+        if (this.iframeListeners) {
+            this.iframeListeners.forEach(({ mouseEnterHandler, mouseLeaveHandler }, iframe) => {
+                iframe.removeEventListener('mouseenter', mouseEnterHandler);
+                iframe.removeEventListener('mouseleave', mouseLeaveHandler);
+            });
+            this.iframeListeners.clear();
+        }
+        
+        // Clean up mutation observer
+        if (this.mutationObserver) {
+            this.mutationObserver.disconnect();
+            this.mutationObserver = null;
+        }
+        
+        // Remove cursor element
         if (this.cursor && this.cursor.parentNode) {
             this.cursor.parentNode.removeChild(this.cursor);
         }
@@ -248,10 +327,16 @@ class AnimatedCursor {
         document.body.classList.remove('js-cursor-active');
         
         // Remove event listeners
-        document.removeEventListener('mousemove', this.handleMouseMove);
-        document.removeEventListener('mouseleave', this.handleMouseLeave);
-        document.removeEventListener('mouseenter', this.handleMouseEnter);
-        window.removeEventListener('resize', this.handleResize);
+        this.eventListeners.forEach((handler, event) => {
+            if (event === 'windowBlur' || event === 'windowMouseOut' || event === 'windowFocus' || event === 'resize') {
+                window.removeEventListener(event.replace('window', '').toLowerCase(), handler);
+            } else if (event === 'bodyMouseEnter') {
+                document.body.removeEventListener('mouseenter', handler);
+            } else {
+                document.removeEventListener(event, handler);
+            }
+        });
+        this.eventListeners.clear();
     }
 }
 
