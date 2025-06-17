@@ -20,11 +20,9 @@ class AnimatedCursor {
         this.eventListeners = new Map();
         this.mutationObserver = null;
         
-        // Use 64px sprite for quality, display at 32px size
-        this.frameWidth = 64;
-        this.frameHeight = 64;
-        this.displayWidth = 32;
-        this.displayHeight = 32;
+        // Use 32px sprite at actual size
+        this.frameWidth = 32;
+        this.frameHeight = 32;
         
         // Robustly resolve sprite path based on JS file location (works locally, in subdirectories, and in older browsers)
         let scriptBase = '';
@@ -37,7 +35,7 @@ class AnimatedCursor {
                 scriptBase = scripts[scripts.length - 1].src.split('/').slice(0, -1).join('/');
             }
         }
-        this.spriteSheetPath = scriptBase + '/running_child_6frames_sprite.png';
+        this.spriteSheetPath = scriptBase + '/running_child_6frames_32px_sprite.png';
         
         // Remove debug logging for production
         // console.log('Iframe detection:', {
@@ -74,11 +72,11 @@ class AnimatedCursor {
         this.cursor.id = 'animated-cursor';
         this.cursor.style.cssText = `
             position: fixed;
-            width: ${this.displayWidth}px;
-            height: ${this.displayHeight}px;
+            width: ${this.frameWidth}px;
+            height: ${this.frameHeight}px;
             pointer-events: none;
             z-index: 9999;
-            background-size: ${this.displayWidth * this.totalFrames}px ${this.displayHeight}px;
+            background-size: ${this.frameWidth * this.totalFrames}px ${this.frameHeight}px;
             background-repeat: no-repeat;
             background-position: 0 0;
             transform: translate(-50%, -50%);
@@ -100,6 +98,7 @@ class AnimatedCursor {
         
         spriteSheet.onload = () => {
             this.cursor.style.backgroundImage = `url('${spriteSheet.src}')`;
+            this.cursor.style.backgroundSize = `${this.frameWidth * this.totalFrames}px ${this.frameHeight}px`;
             this.cursor.style.display = 'block';
             this.isVisible = true;
             // Add class to body to indicate JavaScript cursor is active
@@ -229,10 +228,10 @@ class AnimatedCursor {
                 if (this.cursor && this.isVisible) {
                     const rect = this.cursor.getBoundingClientRect();
                     if (rect.right > window.innerWidth) {
-                        this.cursor.style.left = (window.innerWidth - this.displayWidth / 2) + 'px';
+                        this.cursor.style.left = (window.innerWidth - this.frameWidth / 2) + 'px';
                     }
                     if (rect.bottom > window.innerHeight) {
-                        this.cursor.style.top = (window.innerHeight - this.displayHeight / 2) + 'px';
+                        this.cursor.style.top = (window.innerHeight - this.frameHeight / 2) + 'px';
                     }
                 }
             }, 100); // Debounce resize events
@@ -300,7 +299,7 @@ class AnimatedCursor {
             if (currentTime - lastFrameTime >= this.animationSpeed) {
                 if (this.cursor && this.isVisible) {
                     this.currentFrame = (this.currentFrame + 1) % this.totalFrames;
-                    const xOffset = -(this.currentFrame * this.displayWidth);
+                    const xOffset = -(this.currentFrame * this.frameWidth);
                     this.cursor.style.backgroundPosition = `${xOffset}px 0`;
                 }
                 lastFrameTime = currentTime;

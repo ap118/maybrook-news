@@ -19,7 +19,7 @@ body.js-cursor-active .submit-btn {
   cursor: none !important;
 }
 
-/* Fallback CSS cursor for when JavaScript is disabled or fails */
+/* Fallback CSS cursor for when JavaScript is disabled or fails - only use 32px */
 body:not(.js-cursor-active) html,
 body:not(.js-cursor-active) body,
 body:not(.js-cursor-active) div,
@@ -45,52 +45,13 @@ body:not(.js-cursor-active) main {
   cursor: url('runningchild_32.gif') 16 16, auto !important;
 }
 
-/* Alternative: try the 64px version if 32px doesn't work */
-@media (min-width: 768px) {
-  body:not(.js-cursor-active) html,
-  body:not(.js-cursor-active) body,
-  body:not(.js-cursor-active) div,
-  body:not(.js-cursor-active) p,
-  body:not(.js-cursor-active) span,
-  body:not(.js-cursor-active) a,
-  body:not(.js-cursor-active) img,
-  body:not(.js-cursor-active) h1,
-  body:not(.js-cursor-active) h2,
-  body:not(.js-cursor-active) h3,
-  body:not(.js-cursor-active) h4,
-  body:not(.js-cursor-active) h5,
-  body:not(.js-cursor-active) h6,
-  body:not(.js-cursor-active) ul,
-  body:not(.js-cursor-active) li,
-  body:not(.js-cursor-active) nav,
-  body:not(.js-cursor-active) header,
-  body:not(.js-cursor-active) footer,
-  body:not(.js-cursor-active) section,
-  body:not(.js-cursor-active) article,
-  body:not(.js-cursor-active) aside,
-  body:not(.js-cursor-active) main {
-    cursor: url('runningchild_64.gif') 32 32, auto !important;
-  }
-}
-
-/* Ensure cursor works on interactive elements */
+/* Ensure cursor works on interactive elements - only use 32px */
 body:not(.js-cursor-active) a:hover,
 body:not(.js-cursor-active) button:hover,
 body:not(.js-cursor-active) input:hover,
 body:not(.js-cursor-active) textarea:hover,
 body:not(.js-cursor-active) select:hover {
   cursor: url('runningchild_32.gif') 16 16, pointer !important;
-}
-
-/* Media query for larger screens with 64px cursor */
-@media (min-width: 768px) {
-  body:not(.js-cursor-active) a:hover,
-  body:not(.js-cursor-active) button:hover,
-  body:not(.js-cursor-active) input:hover,
-  body:not(.js-cursor-active) textarea:hover,
-  body:not(.js-cursor-active) select:hover {
-    cursor: url('runningchild_64.gif') 32 32, pointer !important;
-  }
 }
 
 /* JavaScript cursor styles */
