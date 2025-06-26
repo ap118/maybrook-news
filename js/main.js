@@ -66,3 +66,9 @@ var overlayVideoPlayer;
   });
 
   window.addEventListener('scroll', function(){ pauseVideo(); }, true)
+
+  $("#close_overlay").click(function() {
+    $(".video_overlay").css("display", "none");
+    // $('html').css("overflow","auto");
+    
+});

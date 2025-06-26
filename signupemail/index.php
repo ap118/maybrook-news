@@ -26,8 +26,8 @@
     <meta name="twitter:url" content="https://www.maybrookmissing.com/" />
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet" />
-    <link href="../cursor/cursor-style.css" rel="stylesheet" />
 
+<link href="../cursor/cursor-style.css" rel="stylesheet" />
     <!-- OneTrust Cookies Consent Notice start for maybrookmissing.com -->
 <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="01960fc7-987b-7377-b589-67e20b5696af" ></script>
 <!-- OneTrust Cookies Consent Notice end for maybrookmissing.com -->
@@ -68,6 +68,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
           <li class="nav-li"> <a href="../" class="nav-link">HOME</a> </li>
 <!--          <li class="nav-li"> <a href="../citynews" class="nav-link">CITY NEWS </a> </li>-->
           <li class="nav-li"> <a href="../signupemail" class="nav-link">SIGN UP</a> </li>
+          <li class="nav-li"> <a href="https://www.youtube.com/watch?v=H52j416nFS4" class="nav-link" target="_blank">BREAKING NEWS</a> </li>
                 </ul>
               </nav>
             </div>
@@ -88,9 +89,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     <!-- FOOTER -->
 <footer class="footer">
     <div class="fixed_form_expand expand_btn_footer" id="formExpandBtnmain"><span>SIGN UP FOR UPDATES</span><!--<span class="expand_icon"></span>--></div>
-    <div class="footer-rrating-left-align"><img src="../images/wea_r_rating.png" class="img-fluid d-block footer-rrating-left-align-img" alt=""/></div>
+    <div class="footer-rrating-left-align"><img src="../images/wea_r_rating.png" class="img-fluid d-block footer-rrating-left-align-img" alt=""/>
+    <a href="https://www.youtube.com/watch?v=ZyPVMo5Ac9k" target="_blank">
+        <img src="../images/georgia.png" class="gerogia-logo" alt="Georgia films">
+      </a></div>
     <div class="main-footer">
-      <div class="footer-links"> <a href="https://policies.warnerbros.com/privacy/en-us/" target="_blank">PRIVACY POLICY</a> <a href="https://policies.warnerbros.com/terms/en-us/" target="_blank">TERMS OF USE</a> <a href="https://www.warnermediaprivacy.com/opt-out/" target="_blank">AD CHOICES</a> <a href="javascript:void(0);" class="ot-sdk-show-settings">Cookie Settings</a> <a href="https://www.filmratings.com/" target="_blank">FILM RATINGS</a>  <a href="https://www.motionpictures.org/" target="_blank">MOTION PICTURES</a> </div>
+    <div class="footer-links"> <a href="https://policies.warnerbros.com/privacy/en-us/" target="_blank">PRIVACY POLICY</a> <a href="https://policies.warnerbros.com/terms/en-us/" target="_blank">TERMS OF USE</a> <a href="https://www.warnermediaprivacy.com/opt-out/" target="_blank">AD CHOICES</a> <a href="https://www.youtube.com/watch?v=ZyPVMo5Ac9k" target="_blank">GEORGIA FILM WORKS</a><a href="https://exploregeorgia.org/film" target="_blank">EXPLORE GEORGIA FILM</a><a href="javascript:void(0);" class="ot-sdk-show-settings">Cookie Settings</a> <a href="https://www.filmratings.com/" target="_blank">FILM RATINGS</a>  <a href="https://www.motionpictures.org/" target="_blank">MOTION PICTURES</a> </div>
       <div class="copyright">© 2025 WARNER BROS. ENT. ALL RIGHTS RESERVED. </div>
     </div>
     <div class="fixed_form_wrapper">
