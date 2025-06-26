@@ -28,7 +28,6 @@
 <link href="css/style.css" rel="stylesheet" />
 
 <link href="cursor/cursor-style.css" rel="stylesheet" />
-
 <!-- OneTrust Cookies Consent Notice start for maybrookmissing.com --> 
 <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="01960fc7-987b-7377-b589-67e20b5696af" ></script> 
 <!-- OneTrust Cookies Consent Notice end for maybrookmissing.com -->
@@ -81,6 +80,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
           <li class="nav-li"> <a href="./" class="nav-link">HOME</a> </li>
           <!--<li class="nav-li"> <a href="./citynews" class="nav-link">CITY NEWS </a> </li>-->
           <li class="nav-li"> <a href="./signupemail" class="nav-link">SIGN UP</a> </li>
+          <li class="nav-li"> <a href="https://www.youtube.com/watch?v=H52j416nFS4" class="nav-link" target="_blank">BREAKING NEWS</a> </li>
         </ul>
       </nav>
     </div>
@@ -102,13 +102,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 
 </p>
            
-            <p>At 2:17am, Wednesday morning, a group of 3rd graders from our school in Ms. Gandy's class, who had recently transferred after an incident at her previous school, voluntarily left their homes. Authorities are baffled by the inexplicable disappearances, which has shaken the community to its core.  
+            <p>At 2:17am, Wednesday morning, a group of 3rd graders from our school in Ms. Gandy’s class, who had recently transferred after an incident at her previous school, voluntarily left their homes. Authorities are baffled by the inexplicable disappearances, which has shaken the community to its core.  
  
 </p>
             <p>In the aftermath of the disappearance, we held a school assembly where numerous parents were able to express their increasing concern about both the investigation and the whereabouts of their children.
  
 </p>
-			  <p>One parent exclaimed, "I don't understand at all—why her classroom? Why only hers?" as our school principal attempted to reassure the crowd.
+			  <p>One parent exclaimed, “I don’t understand at all—why her classroom? Why only hers?” as our school principal attempted to reassure the crowd.
 With no sign of force, and no further information coming to light, we are left with the lingering question… WHY?</p>
             <div class="clearfix"></div>
             <p class="text-center">********</p>
@@ -139,7 +139,14 @@ With no sign of force, and no further information coming to light, we are left w
                     </video>
                 </div>
                 <!-- <h5>Lorem ipsum dolor sit amet</h5> -->
-              </div>
+                             </div>
+              <!-- <div class="thumbnail-container">
+                <div class="video_thumb">
+                <a href="https://www.youtube.com/watch?v=H52j416nFS4" target="_blank" class="video_linkout"><img src="images/video_poster.jpg"></a>
+                </div>
+                <h5>Lorem ipsum dolor sit amet</h5>
+                
+              </div> -->
             </div>
           </div>
         </section>
@@ -161,9 +168,13 @@ With no sign of force, and no further information coming to light, we are left w
 <!-- FOOTER -->
 <footer class="footer">
   <div class="fixed_form_expand expand_btn_footer" id="formExpandBtnmain"><span>SIGN UP FOR UPDATES</span><!--<span class="expand_icon"></span>--></div>  
-  <div class="footer-rrating-left-align"><img src="images/wea_r_rating.png" class="img-fluid d-block footer-rrating-left-align-img" alt=""/></div>
+  <div class="footer-rrating-left-align"><img src="images/wea_r_rating.png" class="img-fluid d-block footer-rrating-left-align-img" alt=""/>
+  <a href="https://www.youtube.com/watch?v=ZyPVMo5Ac9k" target="_blank">
+        <img src="images/georgia.png" class="gerogia-logo" alt="Georgia films">
+      </a>
+</div>
   <div class="main-footer">
-    <div class="footer-links"> <a href="https://policies.warnerbros.com/privacy/en-us/" target="_blank">PRIVACY POLICY</a> <a href="https://policies.warnerbros.com/terms/en-us/" target="_blank">TERMS OF USE</a> <a href="https://www.warnermediaprivacy.com/opt-out/" target="_blank">AD CHOICES</a> <a href="javascript:void(0);" class="ot-sdk-show-settings">Cookie Settings</a> <a href="https://www.filmratings.com/" target="_blank">FILM RATINGS</a>  <a href="https://www.motionpictures.org/" target="_blank">MOTION PICTURES</a> </div>
+    <div class="footer-links"> <a href="https://policies.warnerbros.com/privacy/en-us/" target="_blank">PRIVACY POLICY</a> <a href="https://policies.warnerbros.com/terms/en-us/" target="_blank">TERMS OF USE</a> <a href="https://www.warnermediaprivacy.com/opt-out/" target="_blank">AD CHOICES</a> <a href="https://www.youtube.com/watch?v=ZyPVMo5Ac9k" target="_blank">GEORGIA FILM WORKS</a><a href="https://exploregeorgia.org/film" target="_blank">EXPLORE GEORGIA FILM</a><a href="javascript:void(0);" class="ot-sdk-show-settings">Cookie Settings</a> <a href="https://www.filmratings.com/" target="_blank">FILM RATINGS</a>  <a href="https://www.motionpictures.org/" target="_blank">MOTION PICTURES</a> </div>
     <div class="copyright">© 2025 WARNER BROS. ENT. ALL RIGHTS RESERVED. </div>
   </div>
   <div class="fixed_form_wrapper">
@@ -174,6 +185,13 @@ With no sign of force, and no further information coming to light, we are left w
   </div>
 </footer>
 <!-- //FOOTER --> 
+<!-- <div class="video_overlay">
+<div class="video_overlay_wrapper">
+  <div id="close_overlay">X</div>
+
+  <div class="video_overlay__inner"><a href="https://www.youtube.com/watch?v=H52j416nFS4" target="_blank" class="video_linkout"><img src="images/video_poster.jpg"></a></div>
+</div>
+</div> -->
 <script src="js/jquery-3.6.0.min.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/main.js"></script>
