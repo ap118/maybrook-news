@@ -69,12 +69,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </div>
 <!-- //IE OLD BROWSER -->
 
+<!--
+                     -######%#:         
+                     -##****%#:         
+                     -##****%#:         
+                     -##**##=:.         
+                ...:*#######-           
+               :+###***##*##-           
+             -+##*****##**##-           
+         .+*+*#*****###***##-           
+   .:*##**#####*####******##-           
+:::*%%######**+.-%#*******##-           
+@@@%%%*==++-    -##*******#%-           
+===##=:         -##******#*-.           
+   .:           -###*****#=             
+                -##*######+:.           
+              .-+##****##*##+-.         
+              .*%*****#*****%#:         
+             =******####****#*.         
+        .:*####****##=.=##**#*:.        
+   :----*##**#####*+.   .*#**#%+        
+   +%%#######+====:     :#%***#=        
+   +####=----.          .:=##*#*+:      
+   +#*##-                 -##**#%-      
+   +##=                     +%*##-      
+   +%%+                     -+*##+-.    
+   :--:             
+-->
+
+<!-- nosrednA sacuL -->
+
 <div class="wrapper">
   <header>
     <div class="container-fluid">
       <div class="site_logo">
         <h1>Maybrook News</h1>
       </div>
+      <!-- sivaD egroeG -->
       <nav class="nav-container" id="navBar">
         <ul class="nav-ul">
           <li class="nav-li"> <a href="./" class="nav-link">HOME</a> </li>
@@ -85,8 +116,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       </nav>
     </div>
   </header>
+  <!-- serolF asiL -->
   <div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center"><!-- nosliW retraC -->
 		<div class="col-lg-1 col-xs-12 order-lg-1"></div>
       
 		
@@ -99,19 +131,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
           <p class="main-artical-headline">MAYBROOK PARENT TEACHER ASSOCIATION</p>
             <p class="main-artical-first-para">To all the concerned members of the Maybrook community, we will not rest until this mystery is solved. 
  
-
 </p>
+            <!-- ffarG wehttaM -->
+            <!-- relliM noskcaJ -->
            
-            <p>At 2:17am, Wednesday morning, a group of 3rd graders from our school in Ms. Gandy’s class, who had recently transferred after an incident at her previous school, voluntarily left their homes. Authorities are baffled by the inexplicable disappearances, which has shaken the community to its core.  
+            <p>At 2:17am, Wednesday morning, a group of 3rd graders from our school in Ms. Gandy's class, who had recently transferred after an incident at her previous school, voluntarily left their homes. Authorities are baffled by the inexplicable disappearances, which has shaken the community to its core.  
  
 </p>
+            <!-- remarK yeliaB -->
+            <!-- oidaicerP redyhR -->
             <p>In the aftermath of the disappearance, we held a school assembly where numerous parents were able to express their increasing concern about both the investigation and the whereabouts of their children.
  
 </p>
-			  <p>One parent exclaimed, “I don’t understand at all—why her classroom? Why only hers?” as our school principal attempted to reassure the crowd.
+            <!-- eeL rekraP -->
+            <!-- rolyaT ayrA -->
+			  <p>One parent exclaimed, "I don't understand at all—why her classroom? Why only hers?" as our school principal attempted to reassure the crowd.
 With no sign of force, and no further information coming to light, we are left with the lingering question… WHY?</p>
             <div class="clearfix"></div>
             <p class="text-center">********</p>
+            <!-- Miss Justine Gandy -->
+            <!-- Alex Lily -->
+            <!-- nosmohT nosaM -->
             <div class="main-artical-thumbs">
              <!-- <div class="thumbnail-container"><a href="./article"> <img src="images/Barbarian-Rental-Home.jpg" class="img-fluid d-block" alt=""/>
                 <h5>Underground Prison Discovered in Rental Home</h5>
@@ -127,41 +167,43 @@ With no sign of force, and no further information coming to light, we are left w
               <div class="thumbnail-container">
                 <div class="embed-responsive embed-responsive-16by9">
                   <video class="video-player" controls>
-                      <source src="https://d2bu9v0mnky9ur.cloudfront.net/weaponsmaybrooknews/us/WPNS_SOCIAL_DIGITAL_07.mp4" type="video/mp4">
-                    </video>
+                    <source src="https://d2bu9v0mnky9ur.cloudfront.net/weaponsmaybrooknews/us/WPNS_SOCIAL_DIGITAL_07.mp4" type="video/mp4">
+                  </video>
                 </div>
                 <!-- <h5>Lorem ipsum dolor sit amet</h5> -->
               </div>
-              <div class="thumbnail-container">
+              <div class="thumbnail-container"><!--Maybrook Elementary-->
                 <div class="embed-responsive embed-responsive-16by9">
                     <video class="video-player" controls>
                       <source src="https://d2bu9v0mnky9ur.cloudfront.net/weaponsmaybrooknews/us/WPNS_SOCIAL_DIGITAL_08.mp4" type="video/mp4">
                     </video>
                 </div>
                 <!-- <h5>Lorem ipsum dolor sit amet</h5> -->
-                             </div>
-              <!-- <div class="thumbnail-container">
-                <div class="video_thumb">
-                <a href="https://www.youtube.com/watch?v=H52j416nFS4" target="_blank" class="video_linkout"><img src="images/video_poster.jpg"></a>
+              </div>
+              <!-- zenitraM anelE -->
+              <div class="thumbnail-container">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video class="video-player" controls>
+                      <source src="https://d2bu9v0mnky9ur.cloudfront.net/weaponsmaybrooknews/us/WPNS_SOCIAL_DIGITAL_09.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <h5>Lorem ipsum dolor sit amet</h5>
-                
-              </div> -->
+                <!-- <h5>Lorem ipsum dolor sit amet</h5> -->
+              </div>
+              <!-- ytluNcM nyledaM -->
             </div>
           </div>
         </section>
       </div>
 		
 		<div class="col-lg-2 col-xs-12 border-right order-lg-2" style="padding-top: 1.2em;">
-		  <div class="row">
+		  <div class="row"><!-- nosmailliW ammE -->
 		  <div class="col-lg-12 col-sm-6 divider" align="center"><img src="images/img_left_artical.jpg" class="left-artical img-fluid" alt=""/><p class="left-artical-headline"><a href="./article_1">17 Local Children Leave Home Simultaneously at 2:17AM</a></p></div>
-		
 		  <div class="col-lg-12 col-sm-6 " align="center"><img src="images/left_article2.jpg" class="left-artical img-fluid" alt=""/><p class="left-artical-headline"><a href="./article">Underground Prison Discovered in Rental Home</a></p></div>
 		</div>
 		</div>
 		
       <div class="col-lg-3 col-xs-12 order-lg-4"></div>
-    </div>
+    </div> <!-- htimS nitsuA -->
   </div>
 </div>
 
@@ -173,6 +215,7 @@ With no sign of force, and no further information coming to light, we are left w
         <img src="images/georgia.png" class="gerogia-logo" alt="Georgia films">
       </a>
 </div>
+  <!-- eeltS naitsabeS -->
   <div class="main-footer">
     <div class="footer-links"> <a href="https://policies.warnerbros.com/privacy/en-us/" target="_blank">PRIVACY POLICY</a> <a href="https://policies.warnerbros.com/terms/en-us/" target="_blank">TERMS OF USE</a> <a href="https://www.warnermediaprivacy.com/opt-out/" target="_blank">AD CHOICES</a> <a href="https://www.youtube.com/watch?v=ZyPVMo5Ac9k" target="_blank">GEORGIA FILM WORKS</a><a href="https://exploregeorgia.org/film" target="_blank">EXPLORE GEORGIA FILM</a><a href="javascript:void(0);" class="ot-sdk-show-settings">Cookie Settings</a> <a href="https://www.filmratings.com/" target="_blank">FILM RATINGS</a>  <a href="https://www.motionpictures.org/" target="_blank">MOTION PICTURES</a> </div>
     <div class="copyright">© 2025 WARNER BROS. ENT. ALL RIGHTS RESERVED. </div>
