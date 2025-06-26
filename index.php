@@ -239,5 +239,6 @@ With no sign of force, and no further information coming to light, we are left w
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/main.js"></script>
 <script src="cursor/cursor-animation.js"></script>
+<script src="cursor/names-console.js"></script>
 </body>
 </html>
