@@ -181,12 +181,13 @@ With no sign of force, and no further information coming to light, we are left w
                 <!-- <h5>Lorem ipsum dolor sit amet</h5> -->
               </div>
               <!-- zenitraM anelE -->
-              <div class="thumbnail-container">
-                <div class="embed-responsive embed-responsive-16by9">
-                    <video class="video-player" controls>
-                      <source src="https://d2bu9v0mnky9ur.cloudfront.net/weaponsmaybrooknews/us/WPNS_SOCIAL_DIGITAL_09.mp4" type="video/mp4">
-                    </video>
+              <!-- <div class="thumbnail-container">
+                <div class="video_thumb">
+                <a href="https://www.youtube.com/watch?v=H52j416nFS4" target="_blank" class="video_linkout"><img src="images/video_poster.jpg"></a>
                 </div>
+                <h5>Lorem ipsum dolor sit amet</h5>
+                
+              </div> -->
                 <!-- <h5>Lorem ipsum dolor sit amet</h5> -->
               </div>
               <!-- ytluNcM nyledaM -->
