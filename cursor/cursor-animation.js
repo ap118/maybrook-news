@@ -131,11 +131,11 @@ class AnimatedCursor {
     logPerformance(message) {
         if (window.performance && window.performance.memory) {
             const memory = window.performance.memory;
-            console.log(`Cursor Performance - ${message}:`, {
-                usedJSHeapSize: Math.round(memory.usedJSHeapSize / 1024 / 1024) + 'MB',
-                totalJSHeapSize: Math.round(memory.totalJSHeapSize / 1024 / 1024) + 'MB',
-                jsHeapSizeLimit: Math.round(memory.jsHeapSizeLimit / 1024 / 1024) + 'MB'
-            });
+            // console.log(`Cursor Performance - ${message}:`, {
+            //     usedJSHeapSize: Math.round(memory.usedJSHeapSize / 1024 / 1024) + 'MB',
+            //     totalJSHeapSize: Math.round(memory.totalJSHeapSize / 1024 / 1024) + 'MB',
+            //     jsHeapSizeLimit: Math.round(memory.jsHeapSizeLimit / 1024 / 1024) + 'MB'
+            // });
         }
     }
     
@@ -426,7 +426,7 @@ class CursorInitializer {
             // Verify initialization was successful
             setTimeout(() => {
                 if (this.cursorInstance && this.cursorInstance.checkHealth()) {
-                    console.log('Cursor initialized successfully');
+                    // console.log('Cursor initialized successfully');
                     
                     // Set up periodic health monitoring
                     this.startHealthMonitoring();
