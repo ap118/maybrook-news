@@ -26,7 +26,7 @@ names.forEach((name, index) => {
     const originalName = getOriginalName(name);
     
     // Don't apply strikethrough to Alex Lily and Miss Justine Gandy
-    if (originalName === 'Alex Lily' || originalName === 'Miss Justine Gandy') {
+    if (originalName === 'Alex Lily' || originalName === 'Miss Justine Gandy' || originalName === 'Maybrook Elementary') {
         console.log(originalName);
     } else {
         console.log(`%c${originalName}`, 'text-decoration: line-through;');
